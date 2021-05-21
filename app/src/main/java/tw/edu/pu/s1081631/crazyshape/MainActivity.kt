@@ -5,10 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.annotation.GlideModule
+import com.bumptech.glide.module.AppGlideModule
 import kotlinx.android.synthetic.main.activity_game.*
 import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+
+@GlideModule
+public final class MyAppGlideModule : AppGlideModule()
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,11 +26,18 @@ class MainActivity : AppCompatActivity() {
 
         Toast.makeText(this, "作者： (吳曜宇)", Toast.LENGTH_SHORT).show()
 
-        imageButton.setOnLongClickListener{
+        imagNext.setOnLongClickListener{
             var it = Intent(this, GameActivity::class.java);
             startActivity(it)
             true
         }
+
+
+        val img: ImageView = findViewById(R.id.imgTitle)
+        GlideApp.with(this)
+            .load(R.drawable.cover)
+            .override(800, 600)
+            .into(img)
 
     }
 
